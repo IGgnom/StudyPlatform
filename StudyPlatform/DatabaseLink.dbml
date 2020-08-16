@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StudyPlatform" Class="DatabaseLinkDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-BLH070P;Initial Catalog=StudyPlatform;Integrated Security=True" SettingsObjectName="StudyPlatform.Properties.Settings" SettingsPropertyName="StudyPlatformConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cabinets" Member="Cabinets">
+    <Type Name="Cabinets">
+      <Column Name="CabinetId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CabinetNumber" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Disciplines" Member="Disciplines">
+    <Type Name="Disciplines">
+      <Column Name="DisciplineId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Discipline" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Timetable" Member="Timetable">
+    <Type Name="Timetable">
+      <Column Name="TimetableId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Group]" Member="Group" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="L11" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L12" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L13" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L14" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L21" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L22" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L23" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L24" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L31" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L32" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L33" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L34" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L41" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L42" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L43" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L44" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L51" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L52" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L53" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="L54" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="Groups_Timetable" Member="Groups" ThisKey="Group" OtherKey="GroupId" Type="Groups" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="Users">
+      <Column Name="Username" Type="System.String" DbType="NVarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RndKey" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Association Name="Users_Teachers" Member="Teachers" ThisKey="Username" OtherKey="Username" Type="Teachers" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Replacements" Member="Replacements">
+    <Type Name="Replacements">
+      <Column Name="ReplacementId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LessonNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Group]" Member="Group" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="DisciplineOld" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DisciplineNew" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CabinetNumber" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Documents" Member="Documents">
+    <Type Name="Documents">
+      <Column Name="DocumentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DocumentName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LoadingDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Document" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Students" Member="Students">
+    <Type Name="Students">
+      <Column Name="StudentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SecondName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[Group]" Member="Group" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PassportSerial" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="PassportNumber" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Association Name="Groups_Students" Member="Groups" ThisKey="Group" OtherKey="GroupId" Type="Groups" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Groups" Member="Groups">
+    <Type Name="Groups">
+      <Column Name="GroupId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GroupName" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Teacher" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Groups_Timetable" Member="Timetable" ThisKey="GroupId" OtherKey="Group" Type="Timetable" />
+      <Association Name="Groups_Students" Member="Students" ThisKey="GroupId" OtherKey="Group" Type="Students" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Teachers" Member="Teachers">
+    <Type Name="Teachers">
+      <Column Name="TeacherId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TeachersName" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="[Group]" Member="Group" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PassportSerial" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="PassportNumber" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Association Name="Users_Teachers" Member="Users" ThisKey="Username" OtherKey="Username" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
